@@ -1,0 +1,23 @@
+{%expends "base.html" %}
+
+{% block content %}
+        <h1>TODOs</h1>
+        <form action="post">
+        <label>
+            New Task:
+            <input type="text" name="Task" />
+        </label>
+        <input type="submit" value="Add Task" />
+        </form>
+        <hr/>
+        {% if tasks|length == 0%}
+        <p>No tasks yet</p>
+        {% endif %}
+            <ul>
+                {% for task in tasks %}
+                <li>{{task}}</li>
+                {% endfor %}
+            </ul>
+
+        {% end if%}
+  
