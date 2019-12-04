@@ -1,4 +1,4 @@
-from flask import Flask, request, redirect
+from flask import Flask, request, redirect, render_template
 import cgi
 import os
 
@@ -15,21 +15,20 @@ def hello():
     template = jinja_env.get_template("hello_greeting.html")
     return  render_template(name=first_name) 
 
-@app.route(/valid_time)
+@app.route("/valid_time")
 def valid_time():
     time = request.args.get("time")
     return "<h1> You submitted {0}. Thanks for submitting a valid time!</h1>".format(time)
 
 tasks = []
 
-@app.route("/todos" methods=["POST", "GET"])
+@app.route("/todos", methods=["POST", "GET"])
 def todos ():
-    if request.methds == "POST":
+    if request.methods == "POST":
         task = request.form["task"]
         task.append(task)
 
     templaste = jinja_env.get_template(*"todos.html")
     return template.render(tasks=tasks)    
-
 
 app.run()
